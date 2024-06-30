@@ -11,15 +11,16 @@ import projects.service.ProjectService;
 
 public class ProjectsApp {
 
-	private ProjectService projectService = new ProjectService();
-	private Scanner scanner = new Scanner(System.in);
-	private Project currentProject;
+		private ProjectService projectService = new ProjectService();
+		
 	// @formatter:off
 		private List<String> operations = List.of(
 			"1) Add a project"
 		);
 	// @formatter:on
 		
+	private Scanner scanner = new Scanner(System.in);
+	
 		
 	public static void main(String[] args) {
  
@@ -47,7 +48,6 @@ public class ProjectsApp {
 				
 				
 				default: System.out.println("\n" + selection + " is not a valid selection. Try again.");
-				break;
 				}
 			}
 			catch(Exception e) {
@@ -63,15 +63,13 @@ public class ProjectsApp {
 		BigDecimal actualHours = getDecimalInput("Enter the actual hours");
 		Integer difficulty = getIntInput("Enter the project difficulty");
 		String notes = getStringInput("Enter the project notes");
-		
-		Project project = new Project();  //call default constructor
+		Project project = new Project();
 		// set project parameters 
 		project.setProjectName(projectName);
 		project.setEstimatedHours(estimatedHours);
 		project.setActualHours(actualHours);
 		project.setDifficulty(difficulty);
 		project.setNotes(notes);
-		
 		// add project to project Service
 		Project dbProject = projectService.addProject(project);
 		System.out.println("You have successfully created project: " + dbProject);
@@ -105,7 +103,7 @@ public class ProjectsApp {
 			return Integer.valueOf(input); //check if input is int
 		}
 		catch(NumberFormatException e) {
-			throw new DbException(input + " is not a valid number.");
+			throw new DbException(input + " is not a valid number. Try again.");
 		}
 	} // end method getIntInput
 
@@ -120,7 +118,7 @@ public class ProjectsApp {
 			return new BigDecimal(input).setScale(2); 
 		}
 		catch(NumberFormatException e) {
-			throw new DbException(input + " is not a valid decimal number.");
+			throw new DbException(input + " is not a valid decimal number. Try again.");
 		}
 	} // end method getDecimalInput
 
@@ -133,14 +131,10 @@ public class ProjectsApp {
 	}
 
 
-	private void printOperations() { // prints out the available user options as defined in operations List object
+	private void printOperations() { // prints out the available user options
 		System.out.println("\nThese are the available selections. Press the Enter key to quit:");
-		operations.forEach(line -> System.out.println("\t" + line));
-		/*if (Objects.isNull(currentProject)) {
-			System.out.println("\nYou do not have an active project.");
-		} else {
-			System.out.println("\n You are viewing: " + currentProject);
-		} */
+		operations.forEach(line -> System.out.println("\t"));
+		
 	} // end method printOperations
 
 }

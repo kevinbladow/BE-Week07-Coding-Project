@@ -13,7 +13,7 @@ public class ProjectsApp {
 
 	private ProjectService projectService = new ProjectService();
 	private Scanner scanner = new Scanner(System.in);
-	private Project currentProject;
+	
 	// @formatter:off
 		private List<String> operations = List.of(
 			"1) Add a project"
@@ -105,7 +105,7 @@ public class ProjectsApp {
 			return Integer.valueOf(input); //check if input is int
 		}
 		catch(NumberFormatException e) {
-			throw new DbException(input + " is not a valid number.");
+			throw new DbException(input + " is not a valid number. Try again.");
 		}
 	} // end method getIntInput
 
@@ -120,7 +120,7 @@ public class ProjectsApp {
 			return new BigDecimal(input).setScale(2); 
 		}
 		catch(NumberFormatException e) {
-			throw new DbException(input + " is not a valid decimal number.");
+			throw new DbException(input + " is not a valid decimal number. Try again.");
 		}
 	} // end method getDecimalInput
 
@@ -135,12 +135,8 @@ public class ProjectsApp {
 
 	private void printOperations() { // prints out the available user options as defined in operations List object
 		System.out.println("\nThese are the available selections. Press the Enter key to quit:");
-		operations.forEach(line -> System.out.println("\t" + line));
-		/*if (Objects.isNull(currentProject)) {
-			System.out.println("\nYou do not have an active project.");
-		} else {
-			System.out.println("\n You are viewing: " + currentProject);
-		} */
+		operations.forEach(line -> System.out.println("\t"));
+		
 	} // end method printOperations
 
 }

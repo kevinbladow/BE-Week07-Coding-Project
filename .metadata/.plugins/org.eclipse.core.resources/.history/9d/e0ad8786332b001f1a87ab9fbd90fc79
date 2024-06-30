@@ -1,9 +1,0 @@
-package projects.exception;
-
-public class DbException {
-
-	public DbException() {
-		// TODO Auto-generated constructor stub
-	}
-
-}
