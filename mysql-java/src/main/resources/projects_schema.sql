@@ -15,7 +15,7 @@ CREATE TABLE project(
 );
 CREATE TABLE category(
 	category_id INT AUTO_INCREMENT NOT NULL,
-	catergory_name VARCHAR(128),
+	category_name VARCHAR(128),
 	PRIMARY KEY(category_id)
 );
 CREATE TABLE project_category(
