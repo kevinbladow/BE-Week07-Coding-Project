@@ -78,17 +78,18 @@ public class ProjectsApp {
 
 	private void deleteProject() {
 		listProjects();
+		Integer projectId = getIntInput("\nEnter the project ID to delete/");
 		
-		Integer projectId = getIntInput("\nEnter the project ID to delete");
-					
-		projectService.deleteProject(projectId);
-		System.out.println("Successfully deleted project " + projectId);
+		currentProject = null;
+		currentProject = projectService.fetchProjectById(projectId);
 		
-		// set current project to null if currentProject is not null and the current project Id is what was passed in. 	
-		if(Objects.nonNull(currentProject) && currentProject.getProjectId().equals(projectId)){
-				currentProject = null;
-			}
-	}// end method
+		if (Objects.nonNull(currentProject)) {
+				
+			projectService.deleteProject(projectId);
+			System.out.println("Successfully deleted project " + projectId);
+		
+	}
+
 
 	private void updateProjectDetails() {
 		if(Objects.nonNull(currentProject)){
